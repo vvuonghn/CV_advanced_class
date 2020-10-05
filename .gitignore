@@ -14,3 +14,12 @@ checkpoint
 *.h5
 mrcnn/
 PennFudanPed/
+*.pth
+*pymp*
+*.yml
+*.gif
+*.PNG
+VOCdevkit/
+*.tar
+*.json
+__pycache__/
