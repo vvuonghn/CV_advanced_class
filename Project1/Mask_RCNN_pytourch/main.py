@@ -246,6 +246,10 @@ import utils
 
 
 def train():
+
+    TRAIN = False
+    path_model = "/vinai/vuonghn/Research/CV_courses/Mask_RCNN_pytourch/logs_chair_ade/epoch_v1_170.pth"
+
     path_save = "/vinai/vuonghn/Research/CV_courses/Mask_RCNN_pytourch/logs_chair_ade/"
     # train on the GPU or on the CPU, if a GPU is not available
     device = torch.device('cuda') if torch.cuda.is_available() else torch.device('cpu')
@@ -253,8 +257,8 @@ def train():
     # our dataset has two classes only - background and person
     num_classes = 2
     # use our dataset and defined transformations
-    dataset = Chair_ADE_Dataset('/vinai/vuonghn/Research/CV_courses/Dataset/Chair_ADE20K/training/', get_transform(train=True))
-    dataset_test = Chair_ADE_Dataset('/vinai/vuonghn/Research/CV_courses/Dataset/Chair_ADE20K/val/', get_transform(train=True))
+    dataset = Chair_ADE_Dataset('/vinai/vuonghn/Research/CV_advanced_class/Dataset/Chair_ADE20K/training/', get_transform(train=True))
+    dataset_test = Chair_ADE_Dataset('/vinai/vuonghn/Research/CV_advanced_class/Dataset/Chair_ADE20K/val/', get_transform(train=True))
 
     print("Train: ", len(dataset))
     print("Val: ", len(dataset_test))
@@ -276,16 +280,18 @@ def train():
 
     # get the model using our helper function
     model = get_model_instance_segmentation(num_classes)
+    model.to(device)
     # exit()
 
     # move model to the right device
+
     print("Prepare load model")
-    model = torch.load("/vinai/vuonghn/Research/CV_courses/Mask_RCNN_pytourch/logs_chair_ade/epoch_v1_170.pth")
-    model.to(device)
-    print("Done load model")
-    evaluate(model, data_loader_test, device=device)
-    print("done")
-    exit()
+    if TRAIN == False:
+        model = torch.load(path_model)
+        evaluate(model, data_loader_test, device=device)
+    
+    
+
     # construct an optimizer
     params = [p for p in model.parameters() if p.requires_grad]
     optimizer = torch.optim.SGD(params, lr=0.005,

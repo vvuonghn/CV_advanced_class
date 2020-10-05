@@ -55,10 +55,6 @@ def test_sample(img_path,mask_path,model):
     
     box_0 = ((int(result_box[0][0]),int(result_box[0][1])),(int(result_box[0][2]),int(result_box[0][3])))
     box_1 = ((int(result_box[1][0]),int(result_box[1][1])),(int(result_box[1][2]),int(result_box[1][3])))
-    # box_2 = ((int(result_box[2][0]),int(result_box[2][1])),(int(result_box[2][2]),int(result_box[2][3])))
-    
-    box_0_ = ((int(result_box[0][0])+5,int(result_box[0][1])-5),(int(result_box[0][2])+3,int(result_box[0][3])+2))
-    box_1_ = ((int(result_box[1][0])+7,int(result_box[1][1])+5),(int(result_box[1][2])+8,int(result_box[1][3])))
 
     print(result_box)
     print(result_labels)
@@ -71,8 +67,6 @@ def test_sample(img_path,mask_path,model):
     draw.rectangle(box_0, fill=None,outline ="blue",width=2)
     draw.rectangle(box_1, fill=None,outline ="blue",width=2)
 
-    draw.rectangle(box_0_, fill=None,outline ="green",width=2)
-    draw.rectangle(box_1_, fill=None,outline ="green",width=2)
 
     # draw.rectangle(box_2, fill=None,outline ="blue",width=2)
     img.save("rgb.png")
