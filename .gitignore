@@ -1,0 +1,16 @@
+.gitignore
+Dataset/
+*.data-*
+*index
+checkpoint
+*.meta
+*.txt
+*.pyc
+*.png
+*.npy
+*.zip
+*.mat
+*.jpg
+*.h5
+mrcnn/
+PennFudanPed/
