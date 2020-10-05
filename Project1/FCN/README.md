@@ -1,15 +1,7 @@
 # Fully convolutional neural network (FCN) for semantic segmentation with tensorflow.
 
 This is a simple implementation of a fully convolutional neural network (FCN). The net is based on fully convolutional neural net described in the paper [Fully Convolutional Networks for Semantic Segmentation](https://arxiv.org/pdf/1605.06211.pdf).  The code is based on [FCN implementation](https://github.com/shekkizh/FCN.tensorflow)  by Sarath Shekkizhar with MIT license but replaces the VGG19 encoder with VGG16 encoder. The net is initialized using the pre-trained VGG16 model by Marvin Teichmann.
-An improved version of this net in pytorch [is given here](https://github.com/sagieppel/Fully-convolutional-neural-network-FCN-for-semantic-segmentation-with-pytorch)
-## This is an old model for a New more accurate version of the net focused on recognition of materials in transparent vessels see this [link](https://github.com/sagieppel/Detecting-and-segmenting-and-classifying-materials-inside-vessels-in-images-using-convolutional-net)
-
-## Details input/output
-The input for the net is RGB image (Figure 1 right).
-The net produces pixel-wise annotation as a matrix in the size of the image with the value of each pixel corresponding to its class (Figure 1 left).
-
-![](/Figure1.png)
-Figure 1) Semantic segmentation of image of liquid in glass vessel with FCN. Red=Glass, Blue=Liquid, White=Background
+An improved version of this net in pytorch [is given here](https://github.com/sagieppel Fully-convolutional-neural-network-FCN-for-semantic-segmentation-with-pytorch)
 
 ## Requirements
 This network was run with Python 3.6  Anaconda package and Tensorflow 1.1. The training was done using Nvidia GTX 1080, on Linux Ubuntu 16.04.
@@ -18,8 +10,11 @@ This network was run with Python 3.6  Anaconda package and Tensorflow 1.1. The t
 1) Download the code from the repository.
 2) Download a pre-trained vgg16 net and put in the /Model_Zoo subfolder in the main code folder. A pre-trained vgg16 net can be download from here[https://drive.google.com/file/d/0B6njwynsu2hXZWcwX0FKTGJKRWs/view?usp=sharing] or from here [ftp://mi.eng.cam.ac.uk/pub/mttt2/models/vgg16.npy]
 
-## Tutorial
-
+### Data preprocessing
+Before training, we need to preprocessing origin dataset. 
+In: processing_data.py
+1) Set folder of the trainings set in data_path
+2) Set folder for save output dataset after preprocessing in out_path
 ### Instructions for training (in TRAIN.py):
 In: TRAIN.py
 1) Set folder of the training images in Train_Image_Dir
@@ -45,16 +40,3 @@ In: Evaluate_Net_IOU.py
 3) Set folder for ground truth labels in Label_DIR. The Label Maps should be saved as png image with the same name as the corresponding image and png ending
 4) Set number of classes number in NUM_CLASSES
 5) Run script
-
-## Supporting data sets
-The net was tested on a dataset of annotated images of materials in glass vessels. 
-This dataset can be downloaded from [here](https://drive.google.com/file/d/0B6njwynsu2hXRFpmY1pOV1A4SFE/view?usp=sharing)
-
-MIT Scene Parsing Benchmark with over 20k pixel-wise annotated images can also be used for training and can be download from [here](http://sceneparsing.csail.mit.edu/)
-
-## Trained model
-[Glass and transparent vessel recognition trained model](https://mega.nz/#!5K4jTB5D!J7KURngJe3Z7GJaXBPkqg54r9enn-7KyoZ4Y8HU2FhY)
-
-[Liquid Solid chemical phases recognition in transparent glassware trained model](https://mega.nz/#!tG5WQAjJ!DjBQIne6jkkmwLU0m76HG6HvEQJ5c4AzpzUVQ2oqbDM)
-
-## For New more accurate version of the net focused on recognition of materials in transparent vessels see this [link](https://github.com/sagieppel/Detecting-and-segmenting-and-classifying-materials-inside-vessels-in-images-using-convolutional-net)
